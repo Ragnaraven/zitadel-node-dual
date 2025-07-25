@@ -3,14 +3,32 @@
   "version": "0.0.0-development",
   "description": "Library for API access to ZITADEL. Provides compiled gRPC service clients and helpers for applications and service accounts.",
   "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js",
+      "types": "./dist/types/index.d.ts"
+    },
+    "./dist/api/*": {
+      "import": "./dist/esm/api/*.js",
+      "require": "./dist/cjs/api/*.js",
+      "types": "./dist/types/api/*.d.ts"
+    }
+  },
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/types/index.d.ts",
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
     "dev": "tsc -w",
-    "build": "npm run build:grpc && npm run build:tsc",
-    "prebuild:tsc": "rimraf dist",
-    "build:tsc": "tsc",
+    "build": "npm run build:grpc && npm run build:dual",
+    "build:dual": "npm run build:types && npm run build:esm && npm run build:cjs",
+    "prebuild:dual": "rimraf dist",
+    "build:types": "tsc",
+    "build:esm": "tsc -p tsconfig.esm.json",
+    "build:cjs": "tsc -p tsconfig.cjs.json",
     "prebuild:test": "rimraf dist",
     "build:test": "tsc -p tsconfig.test.json",
     "prebuild:grpc": "rimraf src/api/generated && make-dir src/api/generated",
@@ -32,7 +50,9 @@
   "author": "Christoph Bühler, smartive AG, <christoph@smartive.ch>",
   "license": "Apache-2.0",
   "files": [
-    "dist"
+    "dist/esm",
+    "dist/cjs", 
+    "dist/types"
   ],
   "devDependencies": {
     "@bufbuild/buf": "^1.18.0-1",
