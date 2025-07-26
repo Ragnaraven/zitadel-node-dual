@@ -1,0 +1,54 @@
+name: Test Package
+on:
+  pull_request:
+    branches:
+      - '**'
+  push:
+    branches:
+      - 'main'
+
+concurrency:
+  group: tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test_matrix:
+    strategy:
+      fail-fast: true
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        version: [18, 20, 22]
+    name: test and build (node ${{ matrix.version }}, ${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.version }}
+          cache: 'npm'
+      - run: npm ci
+      
+      # Use Windows-compatible build on Windows, regular build elsewhere
+      - name: Build package (Windows)
+        if: matrix.os == 'windows-latest'
+        run: npm run build:windows
+      - name: Build package (Linux/Mac)
+        if: matrix.os != 'windows-latest'
+        run: npm run build
+        
+      - name: Run tests
+        run: npm test
+
+  test_all:
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    name: Test Results
+    needs: test_matrix
+    steps:
+      - name: Check test matrix status
+        if: ${{ needs.test_matrix.result != 'success' }}
+        run: exit 1
+      - name: All tests passed
+        run: echo "✅ All tests passed successfully!" 
