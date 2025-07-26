@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/Ragnaraven/zitadel-node-dual/compare/v1.0.0...v1.1.0) (2025-07-26)
+
+
+### Features
+
+* enable dual package support for CommonJS and ESM ([694b58e](https://github.com/Ragnaraven/zitadel-node-dual/commit/694b58e52cf905899f10c96e91d07f6e53ee6b7f))
+
 # 1.0.0 (2025-07-26)
 
 
