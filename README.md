@@ -21,127 +21,12 @@ npm install @ragnaraven/zitadel-node-dual
 pnpm add @ragnaraven/zitadel-node-dual
 ```
 
-### Examples
+### Quick Start
 
-Check out the TypeScript examples in the `/examples` folder:
+See the [`/examples`](./examples) folder for complete usage examples:
 
-- **`api-example.ts`** - Basic TypeScript example showing import usage
-- **`nestjs-service.example.ts`** - NestJS service implementation example
-
-### Basic Usage in NestJS
-
-First, create a types file to import the specific types you need:
-
-```typescript
-// src/zitadel/types/zitadel.types.ts
-// Import specific types from the built package
-export type {
-  Metadata
-} from '@ragnaraven/zitadel-node-dual/dist/types/api/generated/zitadel/metadata.js';
-
-export type {
-  TextQueryMethod,
-  ListQuery,
-  ListDetails,
-  ObjectDetails
-} from '@ragnaraven/zitadel-node-dual/dist/types/api/generated/zitadel/object.js';
-
-export type {
-  RoleQuery,
-  RoleKeyQuery,
-  RoleDisplayNameQuery,
-  Role
-} from '@ragnaraven/zitadel-node-dual/dist/types/api/generated/zitadel/project.js';
-
-export type { 
-  Type,
-  UserGrantQuery,
-  UserState,
-  SearchQuery,
-  UserFieldName,
-  EmailQuery,
-  OrQuery,
-  AndQuery,
-  UserGrant,
-  User as ZitadelApiUser,
-  Human,
-  Machine
-} from '@ragnaraven/zitadel-node-dual/dist/types/api/generated/zitadel/user.js';
-```
-
-Then use it in your service:
-
-```typescript
-// src/zitadel/services/zitadel.service.ts
-import { Injectable } from '@nestjs/common';
-import { 
-  createAccessTokenInterceptor,
-  createAuthClient,
-  createManagementClient,
-  createUserClient,
-  type AuthServiceClient,
-  type ManagementServiceClient,
-  type UserServiceClient,
-  TextQueryMethod,
-  Type,
-  UserState
-} from '@ragnaraven/zitadel-node-dual';
-
-// Import your custom types
-import type { 
-  RoleQuery, 
-  UserGrant, 
-  ZitadelApiUser 
-} from '../types/zitadel.types';
-
-@Injectable()
-export class ZitadelService {
-  private authClient: AuthServiceClient;
-  private managementClient: ManagementServiceClient;
-  private userClient: UserServiceClient;
-
-  constructor() {
-    // Initialize clients
-    this.initializeClients();
-  }
-
-  private async initializeClients() {
-    const apiEndpoint = 'https://your-zitadel-instance.com';
-    const accessToken = 'your-access-token';
-    const interceptor = createAccessTokenInterceptor(accessToken);
-    
-    this.authClient = createAuthClient(apiEndpoint, interceptor);
-    this.managementClient = createManagementClient(apiEndpoint, interceptor);
-    this.userClient = createUserClient(apiEndpoint, interceptor);
-  }
-
-  async findRolesByQuery(roleQuery: RoleQuery): Promise<any> {
-    // Use the imported types and enums
-    const query = {
-      ...roleQuery,
-      method: TextQueryMethod.TEXT_QUERY_METHOD_CONTAINS
-    };
-    
-    // Make API call using the clients
-    return this.managementClient.listProjectRoles({
-      projectId: 'your-project-id',
-      queries: [query]
-    });
-  }
-
-  async getUsersByType(userType: Type): Promise<ZitadelApiUser[]> {
-    const response = await this.managementClient.listUsers({
-      queries: [{
-        typeQuery: {
-          type: userType
-        }
-      }]
-    });
-    
-    return response.result || [];
-  }
-}
-```
+- **[`api-example.ts`](./examples/api-example.ts)** - Basic API usage
+- **[`nestjs-service.example.ts`](./examples/nestjs-service.example.ts)** - NestJS integration
 
 ## Original Documentation
 
@@ -189,22 +74,14 @@ The dual build process creates:
 - `dist/esm/` - ES Module build  
 - `dist/types/` - TypeScript declarations
 
-### Examples and Testing
+### Testing
 
-The `/examples` folder contains TypeScript examples demonstrating:
-- ✅ Import syntax usage in both CommonJS and ES Module environments
-- ✅ Type safety and IntelliSense support
-- ✅ NestJS service integration patterns
-- ✅ Error handling and API usage
-
-Run the examples:
+Run the test suite:
 ```bash
-# Install dependencies in examples folder
-cd examples && npm install
-
-# Run the API example (requires ts-node)
-npx ts-node api-example.ts
+npm test
 ```
+
+Tests cover client creation, API calls, and authentication flows across both CommonJS and ES Module environments.
 
 ## Contributing
 
