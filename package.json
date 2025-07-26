@@ -1,7 +1,7 @@
 {
-  "name": "@zitadel/node",
-  "version": "0.0.0-development",
-  "description": "Library for API access to ZITADEL. Provides compiled gRPC service clients and helpers for applications and service accounts.",
+  "name": "@ragnaraven/zitadel-node-dual",
+  "version": "1.0.0",
+  "description": "Library for API access to ZITADEL with modern ES import syntax. Works everywhere - NestJS, Node.js, any TypeScript environment. No more require()!",
   "type": "module",
   "exports": {
     ".": {
@@ -33,22 +33,37 @@
     "build:test": "tsc -p tsconfig.test.json",
     "prebuild:grpc": "rimraf src/api/generated && make-dir src/api/generated",
     "build:grpc": "buf generate https://github.com/zitadel/zitadel.git --path ./proto/zitadel",
+    "build:grpc:windows": "npx @bufbuild/buf generate --template buf.gen.windows.yaml https://github.com/zitadel/zitadel.git --path ./proto/zitadel",
+    "build:windows": "npm run build:grpc:windows && npm run build:dual",
     "test": "ava",
     "pretest:ci": "npm run build:grpc && npm run build:test",
     "test:ci": "npm run test"
   },
-  "keywords": [
+    "keywords": [
     "ZITADEL",
-    "gRPC",
+    "gRPC", 
     "node",
     "authN",
     "authZ",
     "OIDC",
     "IAM",
-    "API"
+    "API",
+    "import",
+    "ES6",
+    "modern",
+    "typescript",
+    "NestJS"
   ],
-  "author": "Christoph Bühler, smartive AG, <christoph@smartive.ch>",
+  "author": "Ragnaraven <your-email@example.com> (fork of original by Christoph Bühler, smartive AG)",
   "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ragnaraven/zitadel-node-dual.git"
+  },
+  "homepage": "https://github.com/Ragnaraven/zitadel-node-dual#readme",
+  "bugs": {
+    "url": "https://github.com/Ragnaraven/zitadel-node-dual/issues"
+  },
   "files": [
     "dist/esm",
     "dist/cjs", 
@@ -56,12 +71,19 @@
   ],
   "devDependencies": {
     "@bufbuild/buf": "^1.18.0-1",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^11.1.0",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^9.2.6",
+    "@semantic-release/npm": "^11.0.2",
+    "@semantic-release/release-notes-generator": "^12.1.0",
     "@tsconfig/node-lts": "^22.0.0",
     "@types/node-rsa": "1.1.4",
     "ava": "6.4.1",
     "grpc-tools": "1.13.0",
     "make-dir-cli": "4.0.0",
     "rimraf": "6.0.1",
+    "semantic-release": "^22.0.12",
     "ts-proto": "2.7.5",
     "typescript": "5.8.3"
   },

@@ -1,5 +1,10 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
-  "extends": "./tsconfig.json",
+  "extends": "@tsconfig/node-lts/tsconfig.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "declaration": false,
+    "emitDeclarationOnly": false
+  },
   "include": ["src/**/*.ts", "test/**/*.ts"]
 }
