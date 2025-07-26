@@ -38,11 +38,13 @@ This fork maintains full compatibility with the original API while adding import
 
 This fork extends the original goals to include:
 
-- ✅ Provide compiled proto clients (original)
-- ✅ Manage resources via proto clients (original)  
-- ✅ Allow authentication of a service account (original)
 - **✅ Support ES import syntax in CommonJS environments**
 - **✅ Maintain compatibility across module systems**
+
+The original package completed these goals:
+- ✅ Provide compiled proto clients
+- ✅ Manage resources via proto clients
+- ✅ Allow authentication of a service account
 
 ## Development
 
