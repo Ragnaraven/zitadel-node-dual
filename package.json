@@ -1,7 +1,7 @@
 {
-  "name": "@ragnaraven/zitadel-node",
+  "name": "@ragnaraven/zitadel-node-dual",
   "version": "1.0.0",
-  "description": "Library for API access to ZITADEL. Provides compiled gRPC service clients with dual CommonJS/ESM support for NestJS compatibility.",
+  "description": "Library for API access to ZITADEL with modern ES import syntax. Works everywhere - NestJS, Node.js, any TypeScript environment. No more require()!",
   "type": "module",
   "exports": {
     ".": {
@@ -33,23 +33,26 @@
     "build:test": "tsc -p tsconfig.test.json",
     "prebuild:grpc": "rimraf src/api/generated && make-dir src/api/generated",
     "build:grpc": "buf generate https://github.com/zitadel/zitadel.git --path ./proto/zitadel",
+    "build:grpc:windows": "npx @bufbuild/buf generate --template buf.gen.windows.yaml https://github.com/zitadel/zitadel.git --path ./proto/zitadel",
+    "build:windows": "npm run build:grpc:windows && npm run build:dual",
     "test": "ava",
     "pretest:ci": "npm run build:grpc && npm run build:test",
     "test:ci": "npm run test"
   },
-  "keywords": [
+    "keywords": [
     "ZITADEL",
-    "gRPC",
+    "gRPC", 
     "node",
     "authN",
     "authZ",
     "OIDC",
     "IAM",
     "API",
-    "CommonJS",
-    "ESM",
-    "NestJS",
-    "dual-package"
+    "import",
+    "ES6",
+    "modern",
+    "typescript",
+    "NestJS"
   ],
   "author": "Ragnaraven <your-email@example.com> (fork of original by Christoph Bühler, smartive AG)",
   "license": "Apache-2.0",

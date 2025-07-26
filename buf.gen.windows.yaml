@@ -1,0 +1,18 @@
+# buf.gen.windows.yaml - Windows-specific version
+version: v1
+managed:
+  enabled: true
+plugins:
+  - name: ts
+    strategy: all
+    path: .\node_modules\.bin\protoc-gen-ts_proto.cmd
+    out: src/api/generated
+    opt:
+      - oneOf=unions
+      - forceLong=long
+      - esModuleInterop=true
+      - env=node
+      - outputServices=nice-grpc
+      - outputServices=generic-definitions
+      - useExactTypes=false
+      - importSuffix=.js 
