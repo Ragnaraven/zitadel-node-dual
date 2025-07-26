@@ -39,9 +39,9 @@
     "pretest:ci": "npm run build:grpc && npm run build:test",
     "test:ci": "npm run test"
   },
-    "keywords": [
+  "keywords": [
     "ZITADEL",
-    "gRPC", 
+    "gRPC",
     "node",
     "authN",
     "authZ",
@@ -66,7 +66,7 @@
   },
   "files": [
     "dist/esm",
-    "dist/cjs", 
+    "dist/cjs",
     "dist/types"
   ],
   "devDependencies": {
