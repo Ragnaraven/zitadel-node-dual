@@ -1,7 +1,7 @@
 {
-  "name": "@zitadel/node",
-  "version": "0.0.0-development",
-  "description": "Library for API access to ZITADEL. Provides compiled gRPC service clients and helpers for applications and service accounts.",
+  "name": "@ragnaraven/zitadel-node",
+  "version": "1.0.0",
+  "description": "Library for API access to ZITADEL. Provides compiled gRPC service clients with dual CommonJS/ESM support for NestJS compatibility.",
   "type": "module",
   "exports": {
     ".": {
@@ -45,10 +45,22 @@
     "authZ",
     "OIDC",
     "IAM",
-    "API"
+    "API",
+    "CommonJS",
+    "ESM",
+    "NestJS",
+    "dual-package"
   ],
-  "author": "Christoph Bühler, smartive AG, <christoph@smartive.ch>",
+  "author": "Ragnaraven <your-email@example.com> (fork of original by Christoph Bühler, smartive AG)",
   "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ragnaraven/zitadel-node-dual.git"
+  },
+  "homepage": "https://github.com/Ragnaraven/zitadel-node-dual#readme",
+  "bugs": {
+    "url": "https://github.com/Ragnaraven/zitadel-node-dual/issues"
+  },
   "files": [
     "dist/esm",
     "dist/cjs", 
