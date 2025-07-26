@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - 'main'
+  workflow_dispatch: # Enable manual triggering
 
 permissions:
   contents: write # to be able to publish a GitHub release
@@ -32,7 +33,7 @@ jobs:
         
       - name: Build package
         run: npm run build
-        
+         
       - name: Run tests
         run: npm test
         
