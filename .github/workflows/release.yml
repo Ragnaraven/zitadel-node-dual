@@ -33,7 +33,10 @@ jobs:
         
       - name: Build package
         run: npm run build
-         
+          
+      - name: Build test files
+        run: npm run build:test
+          
       - name: Run tests
         run: npm test
         
