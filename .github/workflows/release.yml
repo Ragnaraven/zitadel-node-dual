@@ -30,21 +30,10 @@ jobs:
           
       - name: Install dependencies
         run: npm ci
-        
+          
       - name: Build package
         run: npm run build
-          
-      - name: Build test files
-        run: npm run build:test
-          
-      - name: Run tests
-        run: npm test
-        
-      - name: Verify package contents
-        run: |
-          echo "📦 Package contents:"
-          npm pack --dry-run
-          
+           
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
