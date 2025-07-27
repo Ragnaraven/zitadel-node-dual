@@ -1,6 +1,6 @@
 {
   "name": "@ragnaraven/zitadel-node-dual",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Library for API access to ZITADEL with modern ES import syntax. Works everywhere - NestJS, Node.js, any TypeScript environment. No more require()!",
   "exports": {
     ".": {
@@ -27,7 +27,7 @@
   },
   "keywords": [
     "ZITADEL",
-    "gRPC", 
+    "gRPC",
     "node",
     "authN",
     "authZ",
