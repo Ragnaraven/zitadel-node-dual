@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/Ragnaraven/zitadel-node-dual/compare/v1.1.0...v1.2.0) (2025-07-27)
+
+
+### Features
+
+* Update package configuration and improve build process ([21a7b61](https://github.com/Ragnaraven/zitadel-node-dual/commit/21a7b61ecccf9bddd09efed784bb68e5ce1bd821))
+
 # [1.1.0](https://github.com/Ragnaraven/zitadel-node-dual/compare/v1.0.0...v1.1.0) (2025-07-26)
 
 
