@@ -53,7 +53,7 @@ This fork follows the same development process as the original:
 1. Clone this repository
 2. Install the dependencies with `npm install`
 3. Install the submodules with `git submodule update --init --recursive`
-4. Generate the gRPC types with `npm run build:grpc`
+4. Generate the gRPC types with `npm run build:grpc` or `npm run build:grpc:windows`
 5. Build dual packages with `npm run build:dual`
 
 ### Windows Development

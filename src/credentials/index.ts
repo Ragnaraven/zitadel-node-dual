@@ -1,3 +1,3 @@
 // Export all credential-related functionality
-export { Application } from './application.js';
-export { ServiceAccount } from './service-account.js';
+export { Application } from './application';
+export { ServiceAccount } from './service-account';

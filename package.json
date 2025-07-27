@@ -2,44 +2,30 @@
   "name": "@ragnaraven/zitadel-node-dual",
   "version": "1.0.0",
   "description": "Library for API access to ZITADEL with modern ES import syntax. Works everywhere - NestJS, Node.js, any TypeScript environment. No more require()!",
-  "type": "module",
   "exports": {
     ".": {
-      "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.js",
-      "types": "./dist/types/index.d.ts"
-    },
-    "./dist/api/*": {
-      "import": "./dist/esm/api/*.js",
-      "require": "./dist/cjs/api/*.js",
-      "types": "./dist/types/api/*.d.ts"
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js"
     }
   },
-  "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.js",
-  "types": "./dist/types/index.d.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
-    "dev": "tsc -w",
-    "build": "npm run build:grpc && npm run build:dual",
-    "build:dual": "npm run build:types && npm run build:esm && npm run build:cjs",
-    "prebuild:dual": "rimraf dist",
-    "build:types": "tsc",
-    "build:esm": "tsc -p tsconfig.esm.json",
-    "build:cjs": "tsc -p tsconfig.cjs.json",
-    "prebuild:test": "rimraf dist",
-    "build:test": "tsc -p tsconfig.test.json",
+    "dev": "tsup --watch",
+    "build": "npm run build:grpc && tsup",
+    "clean": "rimraf dist",
     "prebuild:grpc": "rimraf src/api/generated && make-dir src/api/generated",
     "build:grpc": "buf generate https://github.com/zitadel/zitadel.git --path ./proto/zitadel",
     "build:grpc:windows": "npx @bufbuild/buf generate --template buf.gen.windows.yaml https://github.com/zitadel/zitadel.git --path ./proto/zitadel",
-    "build:windows": "npm run build:grpc:windows && npm run build:dual",
+    "build:windows": "npm run build:grpc:windows && tsup",
     "test": "ava",
-    "pretest:ci": "npm run build:grpc && npm run build:test",
+    "pretest:ci": "npm run build:grpc && tsup",
     "test:ci": "npm run test"
   },
-    "keywords": [
+  "keywords": [
     "ZITADEL",
     "gRPC", 
     "node",
@@ -65,9 +51,7 @@
     "url": "https://github.com/Ragnaraven/zitadel-node-dual/issues"
   },
   "files": [
-    "dist/esm",
-    "dist/cjs", 
-    "dist/types"
+    "dist"
   ],
   "devDependencies": {
     "@bufbuild/buf": "^1.18.0-1",
@@ -85,13 +69,16 @@
     "rimraf": "6.0.1",
     "semantic-release": "^22.0.12",
     "ts-proto": "2.7.5",
+    "tsup": "^8.5.0",
     "typescript": "5.8.3"
   },
   "dependencies": {
+    "@bufbuild/protobuf": "^2.2.3",
     "axios": "1.11.0",
     "jose": "5.10.0",
     "long": "5.3.2",
     "nice-grpc": "2.1.12",
+    "nice-grpc-common": "^2.0.2",
     "node-rsa": "1.1.1",
     "openid-client": "5.7.1",
     "protobufjs": "7.5.3"
