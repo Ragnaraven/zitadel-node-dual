@@ -15,4 +15,4 @@ plugins:
       - outputServices=nice-grpc
       - outputServices=generic-definitions
       - useExactTypes=false
-      - importSuffix=.js
+      # omit .js suffix so tsc can resolve during declaration emit
