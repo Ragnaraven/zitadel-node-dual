@@ -30,8 +30,8 @@ jobs:
           node-version: ${{ matrix.version }}
           cache: 'npm'
       - run: npm ci
-      - name: Build package
-        run: npm run build
+      - name: Build package (Linux)
+        run: npm run build:linux
         
       - name: Build test files
         run: npm run build:test
