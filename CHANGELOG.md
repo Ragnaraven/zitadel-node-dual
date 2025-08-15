@@ -1,3 +1,15 @@
+# [1.3.0](https://github.com/Ragnaraven/zitadel-node-dual/compare/v1.2.0...v1.3.0) (2025-08-15)
+
+
+### Bug Fixes
+
+* update import suffix handling and improve build scripts ([7045978](https://github.com/Ragnaraven/zitadel-node-dual/commit/7045978b6660a1487ec68ce1d5e31f91ba60fa07))
+
+
+### Features
+
+* **build:** corrected build format ([2596072](https://github.com/Ragnaraven/zitadel-node-dual/commit/259607237ea6b91193eb67cd2b515f18e0a3fd58))
+
 # [1.2.0](https://github.com/Ragnaraven/zitadel-node-dual/compare/v1.1.0...v1.2.0) (2025-07-27)
 
 
