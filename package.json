@@ -4,23 +4,46 @@
   "description": "Library for API access to ZITADEL with modern ES import syntax. Works everywhere - NestJS, Node.js, any TypeScript environment. No more require()!",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "require": "./dist/index.js"
-    }
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js", 
+      "types": "./dist/types/index.d.ts"
+    },
+    "./api/generated/zitadel/object": {
+      "import": "./dist/esm/api/generated/zitadel/object.js",
+      "require": "./dist/cjs/api/generated/zitadel/object.js",
+      "types": "./dist/types/api/generated/zitadel/object.d.ts"
+    },
+    "./api/generated/zitadel/user": {
+      "import": "./dist/esm/api/generated/zitadel/user.js",
+      "require": "./dist/cjs/api/generated/zitadel/user.js",
+      "types": "./dist/types/api/generated/zitadel/user.d.ts"
+    },
+    "./api/generated/zitadel/project": {
+      "import": "./dist/esm/api/generated/zitadel/project.js",
+      "require": "./dist/cjs/api/generated/zitadel/project.js",
+      "types": "./dist/types/api/generated/zitadel/project.d.ts"
+    },
+    "./api/generated/zitadel/metadata": {
+      "import": "./dist/esm/api/generated/zitadel/metadata.js",
+      "require": "./dist/cjs/api/generated/zitadel/metadata.js",
+      "types": "./dist/types/api/generated/zitadel/metadata.d.ts"
+    },
+    "./dist/*": "./dist/*"
   },
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/types/index.d.ts",
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
     "dev": "tsup --watch",
     "build": "npm run build:grpc && tsup",
+    "build:linux": "npm run build:grpc && tsup",
     "clean": "rimraf dist",
     "prebuild:grpc": "rimraf src/api/generated && make-dir src/api/generated",
-    "build:grpc": "buf generate https://github.com/zitadel/zitadel.git --path ./proto/zitadel",
-    "build:grpc:windows": "npx @bufbuild/buf generate --template buf.gen.windows.yaml https://github.com/zitadel/zitadel.git --path ./proto/zitadel",
-    "build:windows": "npm run build:grpc:windows && tsup",
+    "build:grpc:linux": "buf generate https://github.com/zitadel/zitadel.git --path ./proto/zitadel",
+    "build:grpc": "npx @bufbuild/buf generate --template buf.gen.windows.yaml https://github.com/zitadel/zitadel.git --path ./proto/zitadel",
     "test": "ava",
     "pretest:ci": "npm run build:grpc && tsup",
     "test:ci": "npm run test"
