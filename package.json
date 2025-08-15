@@ -28,6 +28,7 @@
     "build": "npm run build:win",
     "build:win": "npm run gen && tsup && tsc -p tsconfig.json",
     "build:linux": "npm run gen:linux && tsup && tsc -p tsconfig.json",
+    "build:test": "tsc -p tsconfig.test.json",
     "clean": "rimraf dist",
     "gen": "rimraf src/api/generated && make-dir src/api/generated && npx @bufbuild/buf generate --template buf.gen.windows.yaml https://github.com/zitadel/zitadel.git --path ./proto/zitadel",
     "gen:linux": "rimraf src/api/generated && make-dir src/api/generated && npx @bufbuild/buf generate --template buf.gen.yaml https://github.com/zitadel/zitadel.git --path ./proto/zitadel",
