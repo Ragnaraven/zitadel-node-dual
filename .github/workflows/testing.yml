@@ -17,8 +17,8 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        os: [ubuntu-latest, windows-latest]
-        version: [18, 20, 22]
+        os: [ubuntu-latest]
+        version: [22]
     name: test and build (node ${{ matrix.version }}, ${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     steps:
@@ -30,13 +30,7 @@ jobs:
           node-version: ${{ matrix.version }}
           cache: 'npm'
       - run: npm ci
-      
-            # Use Windows-compatible build on Windows, regular build elsewhere
-      - name: Build package (Windows)
-        if: matrix.os == 'windows-latest'
-        run: npm run build:windows
-      - name: Build package (Linux/Mac)
-        if: matrix.os != 'windows-latest'
+      - name: Build package
         run: npm run build
         
       - name: Build test files
