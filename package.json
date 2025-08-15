@@ -25,11 +25,13 @@
   },
   "scripts": {
     "dev": "tsup --watch",
-    "build": "tsup",
+    "build": "(pnpm run gen:win || pnpm run gen) && tsup && tsc -p tsconfig.json",
     "clean": "rimraf dist",
-    "gen": "rimraf src/api/generated && make-dir src/api/generated && pnpm dlx @bufbuild/buf generate --template buf.gen.windows.yaml https://github.com/zitadel/zitadel.git --path ./proto/zitadel",
+    "gen": "rimraf src/api/generated && make-dir src/api/generated && pnpm dlx @bufbuild/buf generate --template buf.gen.yaml https://github.com/zitadel/zitadel.git --path ./proto/zitadel",
+    "gen:win": "rimraf src/api/generated && make-dir src/api/generated && pnpm dlx @bufbuild/buf generate --template buf.gen.windows.yaml https://github.com/zitadel/zitadel.git --path ./proto/zitadel",
+    "prepack": "(pnpm run gen:win || pnpm run gen) && tsup && tsc -p tsconfig.json",
     "test": "ava",
-    "pretest:ci": "tsup",
+    "pretest:ci": "pnpm run gen && tsup",
     "test:ci": "npm run test"
   },
   "keywords": [

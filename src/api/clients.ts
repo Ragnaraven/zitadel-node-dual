@@ -1,13 +1,13 @@
 import { ClientMiddleware, createChannel, createClientFactory } from 'nice-grpc';
-import { AdminServiceClient, AdminServiceDefinition } from './generated/zitadel/admin.js';
-import { AuthServiceClient, AuthServiceDefinition } from './generated/zitadel/auth.js';
-import { ManagementServiceClient, ManagementServiceDefinition } from './generated/zitadel/management.js';
-import { OIDCServiceClient, OIDCServiceDefinition } from './generated/zitadel/oidc/v2beta/oidc_service.js';
-import { OrganizationServiceClient, OrganizationServiceDefinition } from './generated/zitadel/org/v2beta/org_service.js';
-import { SessionServiceClient, SessionServiceDefinition } from './generated/zitadel/session/v2beta/session_service.js';
-import { SettingsServiceClient, SettingsServiceDefinition } from './generated/zitadel/settings/v2beta/settings_service.js';
-import { SystemServiceClient, SystemServiceDefinition } from './generated/zitadel/system.js';
-import { UserServiceClient, UserServiceDefinition } from './generated/zitadel/user/v2beta/user_service.js';
+import { AdminServiceClient, AdminServiceDefinition } from './generated/zitadel/admin';
+import { AuthServiceClient, AuthServiceDefinition } from './generated/zitadel/auth';
+import { ManagementServiceClient, ManagementServiceDefinition } from './generated/zitadel/management';
+import { OIDCServiceClient, OIDCServiceDefinition } from './generated/zitadel/oidc/v2beta/oidc_service';
+import { OrganizationServiceClient, OrganizationServiceDefinition } from './generated/zitadel/org/v2beta/org_service';
+import { SessionServiceClient, SessionServiceDefinition } from './generated/zitadel/session/v2beta/session_service';
+import { SettingsServiceClient, SettingsServiceDefinition } from './generated/zitadel/settings/v2beta/settings_service';
+import { SystemServiceClient, SystemServiceDefinition } from './generated/zitadel/system';
+import { UserServiceClient, UserServiceDefinition } from './generated/zitadel/user/v2beta/user_service';
 
 /**
  * Create a new gRPC service client for the Admin API of ZITADEL.
